@@ -1,5 +1,6 @@
 import {
   Button,
+  Input,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -7,6 +8,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Stack,
   Text,
   useDisclosure
 } from '@chakra-ui/react'
@@ -16,30 +18,51 @@ export default function NewModal() {
 
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
+      <Button
+        bg={'purple.700'}
+        _hover={{ bg: 'gray.100', color: 'purple.700' }}
+        onClick={onOpen}
+      >
+        Criar Meta
+      </Button>
 
-      <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
+      <Modal
+        size={'xl'}
+        blockScrollOnMount={false}
+        isOpen={isOpen}
+        onClose={onClose}
+      >
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+        <ModalContent color={'gray.800'}>
+          <ModalHeader>SUA META</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Text fontWeight="bold" mb="1rem">
               You can scroll the content behind the modal
             </Text>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit
-              dolor porro, eius vel ratione eaque quasi maiores assumenda
-              eligendi ea tenetur reprehenderit? Cumque recusandae minima
-              ducimus impedit maiores. Nesciunt, placeat!
-            </p>
+            <Stack spacing={3}>
+              <Input
+                variant="outline"
+                focusBorderColor="purple.500"
+                placeholder="Digite sua meta"
+              />
+            </Stack>
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
+            <Button
+              bg="purple.700"
+              color={'gray.100'}
+              _hover={{
+                bg: 'gray.300',
+                color: 'purple.700'
+              }}
+              mr={3}
+              variant="ghost"
+            >
+              Criar meta
             </Button>
-            <Button variant="ghost">Secondary Action</Button>
+            <Button onClick={onClose}>Fechar</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
