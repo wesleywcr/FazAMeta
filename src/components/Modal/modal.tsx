@@ -1,6 +1,10 @@
+/* eslint-disable react/no-children-prop */
+
 import {
   Button,
   Input,
+  InputGroup,
+  InputLeftAddon,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -8,8 +12,11 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  NumberInput,
+  NumberInputField,
   Stack,
   Text,
+  Textarea,
   useDisclosure
 } from '@chakra-ui/react'
 
@@ -38,7 +45,7 @@ export default function NewModal() {
           <ModalCloseButton />
           <ModalBody>
             <Text fontWeight="bold" mb="1rem">
-              You can scroll the content behind the modal
+              META
             </Text>
             <Stack spacing={3}>
               <Input
@@ -46,6 +53,36 @@ export default function NewModal() {
                 focusBorderColor="purple.500"
                 placeholder="Digite sua meta"
               />
+              <Text fontWeight="bold" mb="1rem">
+                OBJETIVOS
+              </Text>
+              <Textarea
+                variant="outline"
+                focusBorderColor="purple.500"
+                placeholder="Digite seu Objetivo"
+              />
+              <Text fontWeight="bold" mb="1rem">
+                QUANDO
+              </Text>
+              <Input
+                variant="outline"
+                focusBorderColor="purple.500"
+                placeholder="Data para atingir sua meta"
+              />
+              <Text fontWeight="bold" mb="1rem">
+                CUSTO
+              </Text>
+              <InputGroup>
+                <InputLeftAddon children="R$" />
+                <NumberInput
+                  precision={2}
+                  step={0.2}
+                  focusBorderColor="purple.500"
+                  placeholder="Digite seu custo"
+                >
+                  <NumberInputField />
+                </NumberInput>
+              </InputGroup>
             </Stack>
           </ModalBody>
 
