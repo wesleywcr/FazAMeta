@@ -1,8 +1,11 @@
 import { CheckCircleIcon } from '@chakra-ui/icons'
-import { Box, Container, Heading } from '@chakra-ui/react'
+import { Box, Button, Container, Heading } from '@chakra-ui/react'
 import Table from 'components/Table/table'
 
 export default function SuccessPage() {
+  function handleSave() {
+    window.print()
+  }
   return (
     <>
       <Container
@@ -19,6 +22,15 @@ export default function SuccessPage() {
           </Heading>
         </Box>
         <Table />
+        <Box padding={4}>
+          <Button
+            bg={'green.700'}
+            _hover={{ bg: 'gray.100', color: 'green.700' }}
+            onClick={handleSave}
+          >
+            Imprimir Metas
+          </Button>
+        </Box>
       </Container>
     </>
   )

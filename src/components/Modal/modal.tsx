@@ -26,6 +26,7 @@ export default function NewModal() {
   return (
     <>
       <Button
+        width={'10rem'}
         bg={'purple.700'}
         _hover={{ bg: 'gray.100', color: 'purple.700' }}
         onClick={onOpen}
