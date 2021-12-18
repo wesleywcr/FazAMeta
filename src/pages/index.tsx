@@ -1,8 +1,8 @@
-import { Box, Container, Heading } from '@chakra-ui/react'
+import { Box, Button, Container, Heading } from '@chakra-ui/react'
 import Footer from 'components/Footer/footer'
 import NewModal from 'components/Modal/modal'
 import Navbar from 'components/Navbar/navbar'
-import Table from 'components/Table/table'
+import Link from 'next/link'
 
 export default function Home() {
   return (
@@ -21,7 +21,14 @@ export default function Home() {
           justify="center"
           align="center"
         >
-          <Table />
+          <Link href={'/success'}>
+            <Button
+              bg={'green.700'}
+              _hover={{ bg: 'gray.100', color: 'green.700' }}
+            >
+              Imprimir Metas
+            </Button>
+          </Link>
           <NewModal />
         </Container>
       </Box>

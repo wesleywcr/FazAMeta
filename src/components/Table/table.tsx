@@ -2,11 +2,9 @@ import {
   Table as ChakraTable,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
-  Text,
   Box
 } from '@chakra-ui/react'
 export default function Table() {
@@ -36,9 +34,6 @@ export default function Table() {
               <Td isNumeric>{`R$100,00`}</Td>
             </Tr>
           </Tbody>
-          <Tfoot>
-            <Text>Informações</Text>
-          </Tfoot>
         </ChakraTable>
       </Box>
     </>
