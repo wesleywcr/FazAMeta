@@ -65,6 +65,7 @@ export default function NewModal() {
                 QUANDO
               </Text>
               <Input
+                type="date"
                 variant="outline"
                 focusBorderColor="purple.500"
                 placeholder="Data para atingir sua meta"
