@@ -19,8 +19,13 @@ import {
   Textarea,
   useDisclosure
 } from '@chakra-ui/react'
+import { GetServerSideProps } from 'next'
+import { setCookie, parseCookies } from 'nookies'
+import { useState } from 'react'
 
 export default function NewModal() {
+  const [goal, setGoal] = useState<string>('')
+
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
@@ -53,7 +58,16 @@ export default function NewModal() {
                 variant="outline"
                 focusBorderColor="purple.500"
                 placeholder="Digite sua meta"
+                onChange={(e) => {
+                  setGoal(e.target.value)
+
+                  setCookie(null, 'USER', goal, {
+                    maxAge: 60,
+                    path: '/'
+                  })
+                }}
               />
+
               <Text fontWeight="bold" mb="1rem">
                 OBJETIVOS
               </Text>
@@ -107,4 +121,16 @@ export default function NewModal() {
       </Modal>
     </>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const cookies = parseCookies(context)
+
+  console.log(cookies, cookies.USER)
+  return {
+    props: {
+      msg: '[SERVER] CHEGO AQUI',
+      USER: cookies.USER
+    }
+  }
 }

@@ -7,6 +7,8 @@ import {
   Td,
   Box
 } from '@chakra-ui/react'
+import { GetServerSideProps } from 'next'
+import { parseCookies } from 'nookies'
 export default function Table() {
   return (
     <>
@@ -22,7 +24,7 @@ export default function Table() {
           </Thead>
           <Tbody>
             <Tr>
-              <Td>Ser incrivel</Td>
+              <Td>{parseCookies().GOAL}</Td>
               <Td>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Assumenda, doloremque pariatur rem voluptate accusantium
@@ -38,4 +40,14 @@ export default function Table() {
       </Box>
     </>
   )
+}
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const cookies = parseCookies(context)
+
+  console.log(cookies, cookies.GOAL)
+  return {
+    props: {
+      GOAL: cookies.GOAL || null
+    }
+  }
 }
