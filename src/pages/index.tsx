@@ -39,7 +39,11 @@ export default function Home(props: any) {
   const [goal, setGoal] = useState<string>('')
   const { isOpen, onOpen, onClose } = useDisclosure()
 
-  console.log('No CLIENT', props.GOAL)
+  function addItem() {
+    onClose()
+  }
+
+  console.log(props.msg, props.GOAL)
   return (
     <>
       <Navbar />
@@ -92,9 +96,9 @@ export default function Home(props: any) {
                         variant="outline"
                         focusBorderColor="purple.500"
                         placeholder="Digite sua meta"
+                        value={goal}
                         onChange={(e) => {
-                          setGoal(e.target.value)
-
+                          setGoal(e.currentTarget.value)
                           setCookie(null, 'GOAL', goal, {
                             maxAge: 86400 * 7,
                             path: '/'
@@ -146,6 +150,7 @@ export default function Home(props: any) {
                       }}
                       mr={3}
                       variant="ghost"
+                      onClick={addItem}
                     >
                       Criar meta
                     </Button>
