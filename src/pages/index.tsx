@@ -41,8 +41,11 @@ import Navbar from 'components/Navbar/navbar'
 export default function Home(props: any) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const inputRef = useRef<HTMLInputElement>('' || null)
-
-  const { setItems,items } = useContext(ListContext)
+  
+  const [objective,setObjective] = useState('')
+  const [when,setWhen] = useState('')
+  const [cost,setCost] = useState('')
+  const { items , setItems} = useContext(ListContext)
   const [newItem, setNewItem] = useState('')
 
   const addItem = () => {
@@ -51,12 +54,15 @@ export default function Home(props: any) {
         {
           id: generatedID(),
           title: newItem,
+          objective: objective,
+          when: when,
+          cost:cost,
           isFinished: false
         },
         ...items
       ])
       setNewItem('')
-      
+      onClose()
     }
   }
   const arrItems = JSON.stringify(items)
@@ -122,16 +128,16 @@ export default function Home(props: any) {
                 onClose={onClose}
               >
                 <ModalOverlay />
-                <ModalContent color={'gray.800'}>
+                <ModalContent color={'gray.800'}    ref={inputRef}>
                   <ModalHeader>SUA META</ModalHeader>
                   <ModalCloseButton />
-                  <ModalBody>
+                  <ModalBody >
                     <Text fontWeight="bold" mb="1rem">
                       META
                     </Text>
                     <Stack spacing={3}>
                       <Input
-                        ref={inputRef}
+                     
                         variant="outline"
                         focusBorderColor="purple.500"
                         placeholder="Digite sua meta"
@@ -146,6 +152,8 @@ export default function Home(props: any) {
                         variant="outline"
                         focusBorderColor="purple.500"
                         placeholder="Digite seu Objetivo"
+                        value={objective}
+                        onChange={(e) => setObjective(e.target.value)}
                       />
                       <Text fontWeight="bold" mb="1rem">
                         QUANDO
@@ -155,6 +163,8 @@ export default function Home(props: any) {
                         variant="outline"
                         focusBorderColor="purple.500"
                         placeholder="Data para atingir sua meta"
+                        value={when}
+                        onChange={(e) => setWhen(e.target.value)}
                       />
                       <Text fontWeight="bold" mb="1rem">
                         CUSTO
@@ -166,6 +176,8 @@ export default function Home(props: any) {
                           step={0.2}
                           focusBorderColor="purple.500"
                           placeholder="Digite seu custo"
+                          value={cost}
+                          onChange={(valueString) => setCost(valueString)}
                         >
                           <NumberInputField />
                         </NumberInput>
