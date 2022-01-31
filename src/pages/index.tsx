@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/no-children-prop */
 import {
@@ -6,7 +7,6 @@ import {
   Container,
   Heading,
   List,
-  ListIcon,
   ListItem,
   Input,
   InputGroup,
@@ -23,27 +23,54 @@ import {
   Stack,
   Text,
   Textarea,
-  useDisclosure
+  useDisclosure,
+  Checkbox
 } from '@chakra-ui/react'
-import { MdCropFree } from 'react-icons/md'
-import Footer from 'components/Footer/footer'
 
-import Navbar from 'components/Navbar/navbar'
-import Link from 'next/link'
 
 import { GetServerSideProps } from 'next'
+import Link from 'next/link'
 import { setCookie, parseCookies } from 'nookies'
-import { useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
+import {v4 as generatedID } from 'uuid'
+import { ListContext } from 'context/list'
+import Footer from 'components/Footer/footer'
+import Navbar from 'components/Navbar/navbar'
+
 
 export default function Home(props: any) {
-  const [goal, setGoal] = useState<string>('')
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const inputRef = useRef<HTMLInputElement>('' || null)
 
-  function addItem() {
-    onClose()
+  const { setItems,items } = useContext(ListContext)
+  const [newItem, setNewItem] = useState('')
+
+  const addItem = () => {
+    if (newItem) {
+      setItems((items: any) => [
+        {
+          id: generatedID(),
+          title: newItem,
+          isFinished: false
+        },
+        ...items
+      ])
+      setNewItem('')
+      
+    }
   }
+  const arrItems = JSON.stringify(items)
+  useEffect(()=>{
+    setCookie(null, 'GOAL',arrItems, {
+      maxAge: 86400 * 7,
+      path: '/'
+    })
 
-  console.log(props.msg, props.GOAL)
+  })
+
+
+  console.log('GOAL:', props.GOAL, 'ITEMS:', items,'NOVO ITEM:',newItem)
+
   return (
     <>
       <Navbar />
@@ -61,10 +88,21 @@ export default function Home(props: any) {
           align="center"
         >
           <List spacing={3}>
-            <ListItem>
-              <ListIcon as={MdCropFree} color="green.500" w={5} h={5} />
-              {props.GOAL.toString()}
-            </ListItem>
+          
+              {items.map((item) => {
+                return(
+                  <>
+            
+                <ListItem key={item.id}>
+                  <Checkbox   w={5} h={5} />
+                  {item.title}
+                  {props.GOAL.title}
+                  </ListItem>
+           
+                </>
+                )
+              })}
+          
           </List>
           <Box m={10}>
             <>
@@ -93,17 +131,12 @@ export default function Home(props: any) {
                     </Text>
                     <Stack spacing={3}>
                       <Input
+                        ref={inputRef}
                         variant="outline"
                         focusBorderColor="purple.500"
                         placeholder="Digite sua meta"
-                        value={goal}
-                        onChange={(e) => {
-                          setGoal(e.currentTarget.value)
-                          setCookie(null, 'GOAL', goal, {
-                            maxAge: 86400 * 7,
-                            path: '/'
-                          })
-                        }}
+                        value={newItem}
+                        onChange={(e) => setNewItem(e.target.value)}
                       />
 
                       <Text fontWeight="bold" mb="1rem">
@@ -174,7 +207,7 @@ export default function Home(props: any) {
         </Container>
       </Box>
 
-      <Footer />
+      <Footer  />
     </>
   )
 }
