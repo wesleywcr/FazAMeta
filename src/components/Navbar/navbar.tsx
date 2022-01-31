@@ -12,12 +12,18 @@ import {
   MenuItem,
   MenuDivider,
   useDisclosure,
-  Stack
+  Stack,
+  Heading
 } from '@chakra-ui/react'
 
 import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons'
+import Image from 'next/image'
 
-const Links = ['Dashboard', 'Projects', 'Team']
+const Logo = () => {
+  return <Image src="/img/icon-192.png" alt="logo" width={23} height={23} />
+}
+
+const Links = ['Sobre', 'Blog', 'Contatos']
 
 const NavLink = ({ children }: { children: ReactNode }) => (
   <Link
@@ -50,7 +56,12 @@ export default function Navbar() {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={'center'}>
-            <Box>Logo</Box>
+            <Box>
+              <Heading as={'h3'} fontSize={'1.65rem'}>
+                <Logo />
+                Faz A Meta
+              </Heading>
+            </Box>
             <HStack
               as={'nav'}
               spacing={4}
