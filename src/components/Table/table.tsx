@@ -5,11 +5,27 @@ import {
   Tr,
   Th,
   Td,
-  Box
+  Box,
+  ListIcon,
+  List,
+  ListItem
 } from '@chakra-ui/react'
-import { GetServerSideProps } from 'next'
+import { ListContext } from 'context/list'
 import { parseCookies } from 'nookies'
+import { useContext } from 'react'
+import { MdCropFree } from 'react-icons/md'
+
+type ProspItems = {
+  id: number
+  title: string
+  isFinished: boolean
+}
 export default function Table() {
+  const { items } = useContext(ListContext)
+  const ItemsArray = JSON.parse(parseCookies().GOAL)
+  // console.log(parseCookies().GOAL)
+  console.log('ITEMS CONXTEXT:', items, 'GOAL:', parseCookies().GOAL)
+
   return (
     <>
       <Box boxShadow="md" p="6" rounded="md" bg="gray.700">
@@ -24,7 +40,23 @@ export default function Table() {
           </Thead>
           <Tbody>
             <Tr>
-              <Td>{parseCookies().GOAL}</Td>
+              <Td>
+                <List>
+                  {ItemsArray.map((items: ProspItems) => {
+                    return (
+                      <ListItem key={items.id}>
+                        <ListIcon
+                          as={MdCropFree}
+                          color="green.500"
+                          w={5}
+                          h={5}
+                        />
+                        <p>{items.title}</p>
+                      </ListItem>
+                    )
+                  })}
+                </List>
+              </Td>
               <Td>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Assumenda, doloremque pariatur rem voluptate accusantium
@@ -40,14 +72,4 @@ export default function Table() {
       </Box>
     </>
   )
-}
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const cookies = parseCookies(context)
-
-  console.log(cookies, cookies.GOAL)
-  return {
-    props: {
-      GOAL: cookies.GOAL || null
-    }
-  }
 }
