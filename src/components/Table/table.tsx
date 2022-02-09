@@ -8,7 +8,8 @@ import {
   Box,
   ListIcon,
   List,
-  ListItem
+  ListItem,
+  Text
 } from '@chakra-ui/react'
 import { ListContext } from 'context/list'
 import { parseCookies } from 'nookies'
@@ -18,6 +19,9 @@ import { MdCropFree } from 'react-icons/md'
 type ProspItems = {
   id: number
   title: string
+  objective: string
+  when: Date
+  cost: string
   isFinished: boolean
 }
 export default function Table() {
@@ -32,6 +36,7 @@ export default function Table() {
         <ChakraTable variant="simple">
           <Thead>
             <Tr>
+              <Th>CheckList </Th>
               <Th>META</Th>
               <Th>OBJETIVO</Th>
               <Th>QUANDO</Th>
@@ -39,34 +44,33 @@ export default function Table() {
             </Tr>
           </Thead>
           <Tbody>
-            <Tr>
-              <Td>
-                <List>
-                  {ItemsArray.map((items: ProspItems) => {
-                    return (
-                      <ListItem key={items.id}>
-                        <ListIcon
-                          as={MdCropFree}
-                          color="green.500"
-                          w={5}
-                          h={5}
-                        />
-                        <p>{items.title}</p>
-                      </ListItem>
-                    )
-                  })}
-                </List>
-              </Td>
-              <Td>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Assumenda, doloremque pariatur rem voluptate accusantium
-                voluptatum eum debitis accusamus necessitatibus in
-                exercitationem sunt consequuntur voluptatibus, reprehenderit
-                consectetur! Sunt nulla vero commodi?
-              </Td>
-              <Td>05/08/22</Td>
-              <Td isNumeric>{`R$100,00`}</Td>
-            </Tr>
+            {ItemsArray.map((items: ProspItems) => {
+              return (
+                <>
+                  <Tr>
+                    <Td>
+                      <List>
+                        <ListItem key={items.id}>
+                          <ListIcon
+                            as={MdCropFree}
+                            color="green.500"
+                            w={7}
+                            h={7}
+                          />
+                        </ListItem>
+                      </List>
+                    </Td>
+                    <Td>{items.title}</Td>
+
+                    <Td>
+                      <Text maxW={'20rem'}>{items.objective}</Text>
+                    </Td>
+                    <Td>{items.when}</Td>
+                    <Td isNumeric>{items.cost}</Td>
+                  </Tr>
+                </>
+              )
+            })}
           </Tbody>
         </ChakraTable>
       </Box>
