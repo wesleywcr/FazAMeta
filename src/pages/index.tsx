@@ -38,7 +38,8 @@ import Footer from 'components/Footer/footer'
 import Navbar from 'components/Navbar/navbar'
 
 
-export default function Home(props: any) {
+export default function Home() {
+
   const { isOpen, onOpen, onClose } = useDisclosure()
   const inputRef = useRef<HTMLInputElement>('' || null)
   
@@ -62,6 +63,9 @@ export default function Home(props: any) {
         ...items
       ])
       setNewItem('')
+      setObjective('')
+      setWhen('')
+      setCost('')
       onClose()
     }
   }
@@ -75,7 +79,7 @@ export default function Home(props: any) {
   })
 
 
-  console.log('GOAL:', props.GOAL, 'ITEMS:', items,'NOVO ITEM:',newItem)
+  // console.log('GOAL:', props.GOAL, 'ITEMS:', items,'NOVO ITEM:',newItem)
 
   return (
     <>
@@ -102,7 +106,7 @@ export default function Home(props: any) {
                 <ListItem key={item.id}>
                   <Checkbox   w={5} h={5} />
                   {item.title}
-                  {props.GOAL.title}
+                
                   </ListItem>
            
                 </>
@@ -137,7 +141,6 @@ export default function Home(props: any) {
                     </Text>
                     <Stack spacing={3}>
                       <Input
-                     
                         variant="outline"
                         focusBorderColor="purple.500"
                         placeholder="Digite sua meta"
