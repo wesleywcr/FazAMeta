@@ -4,9 +4,7 @@
 import {
   Box,
   Button,
-  Container,
   Heading,
-  List,
   ListItem,
   Input,
   InputGroup,
@@ -24,7 +22,8 @@ import {
   Text,
   Textarea,
   useDisclosure,
-  Checkbox
+  UnorderedList,
+  Center
 } from '@chakra-ui/react'
 
 
@@ -48,6 +47,7 @@ export default function Home() {
   const [cost,setCost] = useState('')
   const { items , setItems} = useContext(ListContext)
   const [newItem, setNewItem] = useState('')
+
 
   const addItem = () => {
     if (newItem) {
@@ -77,8 +77,6 @@ export default function Home() {
     })
 
   })
-
-
   // console.log('GOAL:', props.GOAL, 'ITEMS:', items,'NOVO ITEM:',newItem)
 
   return (
@@ -90,32 +88,27 @@ export default function Home() {
             FAÇA SUA META
           </Heading>
         </Box>
-        <Container
-          maxW={'6xl'}
-          py={4}
-          spacing={4}
-          justify="center"
-          align="center"
-        >
-          <List spacing={3}>
-          
+        <Center py={4} spacing={4} >
+          <UnorderedList>
               {items.map((item) => {
                 return(
                   <>
-            
-                <ListItem key={item.id}>
-                  <Checkbox   w={5} h={5} />
-                  {item.title}
-                
-                  </ListItem>
-           
-                </>
+              <ListItem key={item.id} >
+                <Text>{item.title}</Text>
+                </ListItem>
+                  </>
                 )
               })}
-          
-          </List>
-          <Box m={10}>
-            <>
+              </UnorderedList>
+      </Center>
+       
+          <Box m={10} 
+
+          py={4}
+          spacing={4}
+          justify="center"
+          align="center">
+         
               <Button
                 width={'10rem'}
                 bg={'purple.700'}
@@ -175,8 +168,7 @@ export default function Home() {
                       <InputGroup>
                         <InputLeftAddon children="R$" />
                         <NumberInput
-                          precision={2}
-                          step={0.2}
+                          
                           focusBorderColor="purple.500"
                           placeholder="Digite seu custo"
                           value={cost}
@@ -206,9 +198,9 @@ export default function Home() {
                   </ModalFooter>
                 </ModalContent>
               </Modal>
-            </>
-          </Box>
-          <Box>
+         
+         
+          <Box marginTop={'2rem'}>
             <Link href={'/success'}>
               <Button
                 width={'10rem'}
@@ -219,7 +211,8 @@ export default function Home() {
               </Button>
             </Link>
           </Box>
-        </Container>
+          </Box>
+      
       </Box>
 
       <Footer  />
