@@ -94,7 +94,7 @@ export default function Home() {
                 return(
                   <>
               <ListItem key={item.id} >
-                <Text>{item.title}</Text>
+                <Text fontSize={'1.25rem'}>{item.title}</Text>
                 </ListItem>
                   </>
                 )
