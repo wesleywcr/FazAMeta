@@ -32,8 +32,8 @@ export default function Table() {
 
   return (
     <>
-      <Box boxShadow="md" p="6" rounded="md" bg="gray.700">
-        <ChakraTable variant="simple">
+      <Box boxShadow="md" p="6" rounded="md" bg="gray.700" mt={[2]} w="full">
+        <ChakraTable variant="simple" size="md">
           <Thead>
             <Tr>
               <Th>CheckList </Th>
@@ -65,8 +65,14 @@ export default function Table() {
                     <Td>
                       <Text maxW={'20rem'}>{items.objective}</Text>
                     </Td>
-                    <Td>{items.when}</Td>
-                    <Td isNumeric>{items.cost}</Td>
+                    <Td>
+                      {items.when
+                        ? new Intl.DateTimeFormat('pt-BR').format(
+                            new Date(items.when)
+                          )
+                        : ''}
+                    </Td>
+                    <Td isNumeric>R$ {items.cost},00</Td>
                   </Tr>
                 </>
               )
