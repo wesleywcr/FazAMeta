@@ -15,23 +15,30 @@ export default function SuccessPage() {
         justify="center"
         align="center"
       >
-        <Box textAlign="center" py={10} px={6} marginLeft={{ md: 90 }}>
+        <Box
+          py={10}
+          px={6}
+          w={'100%'}
+          marginLeft={{ base: '10rem', md: '0' }}
+          justifyContent={'center'}
+          alignItems={'center'}
+        >
           <CheckCircleIcon boxSize={'50px'} color={'green.500'} />
-          <Heading as="h2" size="xl" mt={6} mb={2}>
+          <Heading as="h2" size="xl" mt={6} mb={2} textAlign="center">
             BOA SORTE
           </Heading>
         </Box>
         <Table />
-        <Box padding={4}>
-          <Button
-            bg={'green.700'}
-            _hover={{ bg: 'gray.100', color: 'green.700' }}
-            onClick={handleSave}
-          >
-            Imprimir Metas
-          </Button>
-        </Box>
       </Container>
+      <Box p={4}>
+        <Button
+          bg={'green.700'}
+          _hover={{ bg: 'gray.100', color: 'green.700' }}
+          onClick={handleSave}
+        >
+          Imprimir Metas
+        </Button>
+      </Box>
     </>
   )
 }
