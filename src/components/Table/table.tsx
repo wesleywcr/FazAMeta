@@ -32,8 +32,15 @@ export default function Table() {
 
   return (
     <>
-      <Box boxShadow="md" p="6" rounded="md" bg="gray.700" mt={[2]} w="full">
-        <ChakraTable variant="simple" size="md">
+      <Box
+        boxShadow="md"
+        p="6"
+        rounded="md"
+        bg="gray.700"
+        mt={[2]}
+        w={{ base: '40.5rem', md: 'full' }}
+      >
+        <ChakraTable w={{ base: '50%', md: 'full' }} variant="simple" size="md">
           <Thead>
             <Tr>
               <Th>CheckList </Th>
@@ -72,7 +79,9 @@ export default function Table() {
                           )
                         : ''}
                     </Td>
-                    <Td isNumeric>R$ {items.cost},00</Td>
+                    <Td isNumeric maxW={'10rem'}>
+                      R$ {items.cost},00
+                    </Td>
                   </Tr>
                 </>
               )
