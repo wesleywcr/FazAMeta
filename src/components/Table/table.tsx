@@ -11,9 +11,10 @@ import {
   ListItem,
   Text
 } from '@chakra-ui/react'
+
 import { ListContext } from 'context/list'
 import { parseCookies } from 'nookies'
-import { useContext } from 'react'
+import { useContext, useRef } from 'react'
 import { MdCropFree } from 'react-icons/md'
 
 type ProspItems = {
@@ -30,6 +31,8 @@ export default function Table() {
   // console.log(parseCookies().GOAL)
   console.log('ITEMS CONXTEXT:', items, 'GOAL:', parseCookies().GOAL)
 
+  const Printpdf = useRef(null)
+
   return (
     <>
       <Box
@@ -40,7 +43,12 @@ export default function Table() {
         mt={[2]}
         w={{ base: '40.5rem', md: 'full' }}
       >
-        <ChakraTable w={{ base: '50%', md: 'full' }} variant="simple" size="md">
+        <ChakraTable
+          ref={Printpdf}
+          w={{ base: '50%', md: 'full' }}
+          variant="simple"
+          size="md"
+        >
           <Thead>
             <Tr>
               <Th>CheckList </Th>
