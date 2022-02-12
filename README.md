@@ -5,8 +5,11 @@
 </p>
 
 <br />
-<p align="center"><img src=".github/telainicial.png"/></p>
+
+<p align="center"><img src=".github/FazAMeta.gif?raw=true"/>
 <br />
+<p align="center"><img src=".github/telainicial.png"/></p>
+<br/>
 
 # 📕 About
  
