@@ -221,8 +221,7 @@ export default function Home() {
 }
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const cookies = parseCookies(context)
-
-  console.log(cookies, cookies.GOAL)
+  
   return {
     props: {
       msg: '[SERVER] CHEGO AQUI',
