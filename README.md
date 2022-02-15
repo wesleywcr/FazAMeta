@@ -12,7 +12,7 @@
 <br/>
 
 # 📕 About
- 
+ ✍️ MedTriage is project for you to create your personal goals.
 </br>
 
 # 🛠️Technologies 
@@ -28,10 +28,9 @@ This project was made using the follow technologies:
 # 🚀Features
 
 
-* 
-* 
-* 
-* 
+* Create Goals
+* Export list of goals in pdf.
+
 
 
 # 🏃Getting Started
