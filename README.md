@@ -28,9 +28,9 @@ This project was made using the follow technologies:
 # 🚀Features
 
 
-* Create Goals
+* Create Goals.
 * Export list of goals in pdf.
-
+* Mobile responsive.
 
 
 # 🏃Getting Started
