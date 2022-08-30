@@ -12,7 +12,7 @@
 <br/>
 
 # 📕 About
- ✍️ MedTriage is project for you to create your personal goals.
+ ✍️ FazAMeta is project for you to create your personal goals.
 </br>
 
 # 🛠️Technologies 
